@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+    min-height:100vh;
+    overflow-x:hidden;
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    color:white;
+    margin:30px 0;
+    font-size:clamp(2rem,6vw,3.2rem);
+    line-height:1.3;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+}
+
+.gallery img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    border-radius:20px;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.88);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+    padding:20px;
+}
+
+.lightbox img{
+    max-width:95%;
+    max-height:90%;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(255,255,255,.15);
+}
+
+.next{
+    margin:40px 0;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    padding:15px 40px;
+    border:none;
+    border-radius:40px;
+    background:#ff4081;
+    color:white;
+    font-size:clamp(1rem,3vw,1.2rem);
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+button:hover{
+    transform:scale(1.08);
+    background:#ff1e70;
+}
+
+.hearts span{
+    position:fixed;
+    bottom:-50px;
+    font-size:clamp(1.5rem,3vw,2rem);
+    animation:heart linear infinite;
+    pointer-events:none;
+}
+
+@keyframes heart{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* Mobile */
+@media (max-width:600px){
+
+    body{
+        padding:15px;
+    }
+
+    h1{
+        font-size:2rem;
+        margin:25px 0;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .gallery img{
+        max-width:320px;
+        margin:auto;
+    }
+
+    button{
+        width:100%;
+        max-width:260px;
+        padding:15px;
+    }
+
+    .lightbox img{
+        max-width:100%;
+        max-height:85%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="hearts"></div>
+
+<h1 style="color:#000;">📸 YAY PREETTY ❤️ </h1>
+
+<div class="gallery">
+
+<img src="pic1.jpg" alt="Photo 1" onclick="openImg(this.src)">
+<img src="pic2.jpg" alt="Photo 2" onclick="openImg(this.src)">
+<img src="pic3.jpg" alt="Photo 3" onclick="openImg(this.src)">
+
+</div>
+
+<div class="next">
+<a href="gift.html">
+<button>Next ➜</button>
+</a>
+</div>
+
+<div class="lightbox" onclick="closeImg()">
+<img id="preview" alt="Preview">
+</div>
+
+<script>
+
+const hearts = document.querySelector(".hearts");
+
+for(let i = 0; i < 30; i++){
+
+    let h = document.createElement("span");
+
+    h.innerHTML = "❤️";
+
+    h.style.left = Math.random() * 100 + "%";
+
+    h.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    h.style.animationDelay = Math.random() * 5 + "s";
+
+    hearts.appendChild(h);
+
+}
+
+function openImg(src){
+
+    document.querySelector(".lightbox").style.display = "flex";
+
+    document.getElementById("preview").src = src;
+
+}
+
+function closeImg(){
+
+    document.querySelector(".lightbox").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>

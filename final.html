@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    overflow-x:hidden;
+    text-align:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+    padding:20px;
+}
+
+/* Glass Card */
+.container{
+    max-width:800px;
+    width:100%;
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:40px 30px;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    color:#000;
+}
+
+h1{
+    font-size:clamp(2.2rem,6vw,4rem);
+    margin-bottom:20px;
+    animation:bounce 2s infinite;
+    line-height:1.2;
+    color:#000;
+}
+
+p{
+    font-size:clamp(1rem,3vw,1.4rem);
+    line-height:1.8;
+    margin-bottom:30px;
+    color:#000;
+}
+
+.cake{
+    font-size:clamp(5rem,18vw,8rem);
+    animation:jump 2s infinite;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    margin-top:35px;
+    padding:15px 40px;
+    border:none;
+    border-radius:40px;
+    background:#ff4081;
+    color:white;
+    font-size:clamp(1rem,3vw,1.2rem);
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+button:hover{
+    transform:scale(1.08);
+    background:#ff1e70;
+}
+
+.fireworks span{
+    position:fixed;
+    font-size:clamp(1.8rem,5vw,2.8rem);
+    animation:explode linear forwards;
+    pointer-events:none;
+}
+
+@keyframes explode{
+    0%{
+        transform:scale(.3);
+        opacity:0;
+    }
+    40%{
+        opacity:1;
+    }
+    100%{
+        transform:scale(2);
+        opacity:0;
+    }
+}
+
+@keyframes bounce{
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+@keyframes jump{
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+/* Mobile */
+@media (max-width:600px){
+
+    .container{
+        padding:25px 20px;
+    }
+
+    h1{
+        font-size:2.2rem;
+    }
+
+    p{
+        font-size:1.05rem;
+        line-height:1.7;
+    }
+
+    .cake{
+        font-size:5.5rem;
+    }
+
+    button{
+        width:100%;
+        max-width:260px;
+        padding:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+    <source src="music/birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div class="fireworks"></div>
+
+<div class="container">
+
+<h1 style="color:#000;">🎂 Happy Birthday! 🎂</h1>
+
+<p style="color:#000;">
+Wishing you endless happiness, good health, and success in everything you do.
+May all your dreams come true, and may your heart always be filled with love,
+joy, and beautiful memories.
+<br><br>
+Have an amazing birthday! ❤️🎉
+</p>
+
+<div class="cake">🎂</div>
+
+<a href="index.html">
+    <button>Restart 🔄</button>
+</a>
+
+</div>
+
+<script>
+
+const fireworks = document.querySelector(".fireworks");
+
+const emojis = ["🎆","🎇","✨","💖","⭐","🎉"];
+
+setInterval(()=>{
+
+    let f = document.createElement("span");
+
+    f.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+
+    f.style.left = Math.random()*100 + "vw";
+
+    f.style.top = Math.random()*70 + "vh";
+
+    f.style.animationDuration = (2 + Math.random()) + "s";
+
+    fireworks.appendChild(f);
+
+    setTimeout(()=>{
+        f.remove();
+    },3000);
+
+},180);
+
+// Try to autoplay music
+const music = document.getElementById("bgMusic");
+
+window.addEventListener("load", () => {
+    music.play().catch(() => {
+        console.log("Autoplay blocked by browser.");
+    });
+});
+
+</script>
+
+</body>
+</html>
